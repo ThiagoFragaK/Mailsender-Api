@@ -1,19 +1,20 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\EmailsController;
+use App\Http\Controllers\TopicsController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::controller(EmailsController::class)
+    ->prefix('email')
+    ->group(function () {
+        Route::get('/', 'getEmailsByTopic');
+        Route::post('/dispatch', 'dispatchEmail');
+    }
+);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::controller(TopicsController::class)
+    ->prefix('topics')
+    ->group(function () {
+        Route::get('/', 'getTopics');
+    }
+);
