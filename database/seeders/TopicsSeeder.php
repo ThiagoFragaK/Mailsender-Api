@@ -9,8 +9,9 @@ class TopicsSeeder extends Seeder
 {
     public function run(): Void
     {
-        Topics::create([
-            
-        ]);
+        Topics::create(["name" => "Other"]);
+        Topics::create(["name" => "Work"]);
+        Topics::create(["name" => "Sport"]);
+        Topics::create(["name" => "Urgent"]);
     }
 }
