@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('users_emails', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('status');
             $table->string('user_id')->index()->comment('UsersID from users table"');
             $table->foreign('user_id')->references('user_id');
+            $table->tinyInteger('status');
+            $table->timestamp('verified_at')->nullable();
             $table->timestamps();
         });
     }
