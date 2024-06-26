@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('users_emails', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->index()->comment('UsersID from users table"');
-            $table->foreign('user_id')->references('user_id');
+            $table->integer('user_id')->index()->comment('UsersID from users table"');
             $table->tinyInteger('status');
             $table->timestamp('verified_at')->nullable();
             $table->timestamps();
