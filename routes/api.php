@@ -16,5 +16,6 @@ Route::controller(TopicsController::class)
     ->prefix('topics')
     ->group(function () {
         Route::get('/', 'getTopics');
+        Route::get('/{id}', 'getTopicByID');
     }
 );
