@@ -3,17 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use App\Services\TopicsServices;
+use App\Services\TopicsService;
 class TopicsController extends Controller
 {
-    private TopicsServices $TopicsServices;
+    private TopicsService $TopicsService;
     public function __construct()
     {
-        $this->TopicsServices = new TopicsServices();
+        $this->TopicsService = new TopicsService();
     }
 
     public function getTopics(): JsonResponse
     {
-        return response()->json();
+        return response()->json([
+            "response"=> $this->TopicsService->getTopics(),
+            "status" => 200
+        ]);
+    }
+
+    public function getTopicByID(Int $topicID): JsonResponse
+    {
+        return response()->json([
+            "response"=> $this->TopicsService->getTopicByID($topicID),
+            "status" => 200
+        ]);
     }
 }
