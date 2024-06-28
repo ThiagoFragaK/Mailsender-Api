@@ -26,8 +26,10 @@ class EmailsController extends Controller
     {
         if(!$request->has(["name", "email", "subject"]))
         {
-            $requiredParams = "name, email and subject";
-            throw new Exception("It's required to have {$requiredParams} in the request. Try again.", 400);
+            return response()->json([
+                "error"=> "It's required to have fields 'name', 'email' and 'subject' in the request. Try again.",
+                "status" => 400
+            ]);
         }
 
         $email = [
