@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Services\EmailsService;
@@ -23,7 +24,18 @@ class EmailsController extends Controller
 
     public function dispatchEmail(Request $request): JsonResponse
     {
-        $email = [];
+        if(!$request->has(["name", "email", "subject"]))
+        {
+            $requiredParams = "name, email and subject";
+            throw new Exception("It's required to have {$requiredParams} in the request. Try again.", 400);
+        }
+
+        $email = [
+            "name" => $request->get('name'),
+            "subject" => $request->get("subject"),
+            "email" => $request->get("email"),
+        ];
+
         $response = $this->EmailsService->dispatchEmail($email);
         return response()->json([
             "response"=> $response,
