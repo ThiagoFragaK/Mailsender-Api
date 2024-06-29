@@ -24,10 +24,10 @@ class EmailsController extends Controller
 
     public function dispatchEmail(Request $request): JsonResponse
     {
-        if(!$request->has(["name", "email", "subject"]))
+        if(!$request->has(["name", "email", "body"]))
         {
             return response()->json([
-                "error"=> "It's required to have fields 'name', 'email' and 'subject' in the request. Try again.",
+                "error"=> "It's required to have fields 'name', 'email' and 'body' in the request. Try again.",
                 "status" => 400
             ]);
         }
@@ -35,10 +35,11 @@ class EmailsController extends Controller
         $email = [
             "name" => $request->get('name'),
             "subject" => $request->get("subject"),
+            "body" => $request->get("body"),
             "email" => $request->get("email"),
         ];
 
-        $response = $this->EmailsService->dispatchEmail($email);
+        $response = $this->EmailsService->saveAndDispatchEmail($email);
         return response()->json([
             "response"=> $response,
             "status" => 200
