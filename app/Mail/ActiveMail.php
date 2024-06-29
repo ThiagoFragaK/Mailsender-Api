@@ -11,9 +11,9 @@ use Illuminate\Queue\SerializesModels;
 
 class ActiveMail extends Mailable
 {
-    private $mail;
+    private Array $mail;
     use Queueable, SerializesModels;
-    public function __construct($mail)
+    public function __construct(Array $mail)
     {
         $this->mail = $mail;
     }
@@ -31,7 +31,9 @@ class ActiveMail extends Mailable
 
     public function content(): Content
     {
-        return new Content();
+        return new Content(
+            html: "mail.mail",
+        );
     }
 
     public function attachments(): array
