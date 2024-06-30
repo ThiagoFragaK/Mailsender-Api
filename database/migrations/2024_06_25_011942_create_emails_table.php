@@ -11,9 +11,10 @@ return new class extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->longText('code')->comment("Emails code to identify this specific email");
-            $table->string('sender_id')->comment("UserID from Users table who sent the emails");
-            $table->string('receiver_id')->comment("UserID from Users table who will receive the emails");
+            $table->string('sender')->comment("Email sent the emails");
+            $table->string('receiver')->comment("Email receive the emails");
             $table->boolean('status')->comment("Email status, if successefull sent or not");
+            $table->boolean('body')->comment("Email body");
             $table->timestamps();
         });
     }
