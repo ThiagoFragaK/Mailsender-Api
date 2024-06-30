@@ -11,12 +11,12 @@ class EmailsService
 {
     public function getEmailsByTopic(Int $topicID): Array
     {
-        return [];
+        return Emails::getByTopic($topicID);
     }
 
     public function saveAndDispatchEmail(Array $email): Bool
     {
-        // $this->saveEmail($email);
+        $this->saveEmail($email);
         Mail::to(env("MAIL_HOST"), "Thiago")->send(new ActiveMail($email));
         return true;
     }
