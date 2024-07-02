@@ -7,11 +7,14 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class ActiveMail extends Mailable
 {
     private Array $mail;
+    private String $path;
+    
     use Queueable, SerializesModels;
     public function __construct(Array $mail)
     {
@@ -32,12 +35,12 @@ class ActiveMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            html: "mail.mail",
+            view: 'emails.email',
         );
     }
 
-    public function attachments(): array
+    public function attachments()
     {
-        return [];
+        return Attachment::fromPath(storage_path($this->path));
     }
 }
