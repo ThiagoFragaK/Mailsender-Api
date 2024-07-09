@@ -8,5 +8,6 @@ A small service to send emails to given address using Laravel
 
 1. Clone the repository
 2. Install composer with "composer i" or update the current one "composer update"
-3. Run the project with "php artisan serve"
-4. Use Postman or Insomnia to make HTTP requests
+3. Run the seeders with "php artisan db:seed" or "php artisan db:seed --class=TopicsSeed"
+4. Run the project with "php artisan serve"
+5. Use Postman or Insomnia to make HTTP requests
