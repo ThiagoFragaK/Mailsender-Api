@@ -3,3 +3,10 @@
 ## About the project
 
 A small service to send emails to given address using Laravel 
+
+## How to setup the project
+
+1. Clone the repository
+2. Install composer with "composer i" or update the current one "composer update"
+3. Run the project with "php artisan serve"
+4. Use Postman or Insomnia to make HTTP requests
